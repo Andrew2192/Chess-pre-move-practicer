@@ -1,11 +1,3 @@
-Project goal: Make a functional pre-move practice website for chess players, where the pre-move functionality is very similar to that on chess.com.
-
-MVP scope: A website with two functioning pages, puzzles.html and index.html, a functional chess board, and a functional check pre-moves button.
-
-Future plans: ,  and interface
-
-Tech stack: 
-JSON and plain text to store data.
 # Pre-move practicer
 
 A website that helps you practice premoves in chess.
