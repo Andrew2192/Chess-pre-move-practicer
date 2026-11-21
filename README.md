@@ -19,8 +19,9 @@ After this, they have the option of repeating the process.
 ## Tech Stack
 
 - **Language:** HTML, CSS, JavaScript, Java
-- **Libraries:** None
-- **External tools:** None
+- **Libraries:** chessboard-element, Thymeleaf 
+- **External tools:** Gradle, Git, VSCode
+- **Frameworks:** Spring Boot
 
 ## Setup
 
