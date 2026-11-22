@@ -1,5 +1,11 @@
 import { Chess } from 'https://unpkg.com/chess.js@1.4.0/dist/esm/chess.js'
 
+const startButton = document.querySelector('#startButton');
+
+startButton.addEventListener('click', () => {
+  console.log('Start button pressed');
+});
+
 
 const board = document.querySelector('chess-board');
 const game = new Chess('8/k7/8/2K5/1Q6/8/8/8 w - - 0 1');
