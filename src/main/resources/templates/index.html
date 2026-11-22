@@ -8,11 +8,19 @@
     <body>
 
         <script type="module" src="https://unpkg.com/chessboard-element?module"></script>
-
+        <script type="module" src = "puzzle.js"></script>
         <chess-board
-            draggable-pieces
-            position="8/k7/8/2K5/1Q6/8/8/8">
+            style="width: 400px"
+            position="8/k7/8/2K5/1Q6/8/8/8"
+            draggable-pieces>
         </chess-board>
+
+        <label>Status:</label>
+        <div id="status"></div>
+        <label>FEN:</label>
+        <div id="fen"></div>
+        <label>PGN:</label>
+        <div id="pgn"></div>
 
         
     </body>
