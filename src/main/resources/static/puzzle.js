@@ -34,9 +34,18 @@ board.addEventListener('drop', (e) => {
     to: target,
     promotion: 'q' // NOTE: always promote to a queen for example simplicity
   });
+    console.log("Place successful");
   } catch (err) {
-    //drop handler?
-    setAction('snapback');
+    /*
+    if (err.message.includes('Illegal move')) {
+        console.log(err.message);
+        setAction('snapback');
+    } else {
+        console.error(err.message);
+        setAction('snapback');
+    }*/
+    console.error(err.message);
+      setAction('snapback');
   }
   
 
