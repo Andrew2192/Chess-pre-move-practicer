@@ -4,6 +4,7 @@ const startButton = document.querySelector('#startButton');
 
 startButton.addEventListener('click', () => {
   console.log('Start button pressed');
+  
 });
 
 
@@ -12,6 +13,20 @@ const game = new Chess('k7/7R/2K5/8/8/8/8/8 w - - 0 1');
 const statusElement = document.querySelector('#status');
 const fenElement = document.querySelector('#fen');
 const pgnElement = document.querySelector('#pgn');
+
+const queue = [];
+const qMove = {
+  source: '',
+  target: ''
+};
+
+
+
+
+/*const line = [];
+line.push('Ana');
+line.push('Ben');
+const next = line.shift(); // 'Ana'; line is now ['Ben'] */
 
 board.addEventListener('drag-start', (e) => {
   const {source, piece, position, orientation} = e.detail;
@@ -45,6 +60,18 @@ function makeRandomMove () {
 
 board.addEventListener('drop', (e) => {
   const {source, target, setAction} = e.detail;
+  console.log("DEBUG");
+  console.log("DEBUG");
+  console.log("DEBUG");
+  console.log(e.detail);
+
+  queue.push({
+    source: source, 
+    target: target
+  });
+
+  console.log(queue);
+
   let move = null;
   // see if the move is legal
   try {
@@ -55,26 +82,10 @@ board.addEventListener('drop', (e) => {
   });
     console.log("Place successful");
   } catch (err) {
-    /*
-    if (err.message.includes('Illegal move')) {
-        console.log(err.message);
-        setAction('snapback');
-    } else {
-        console.error(err.message);
-        setAction('snapback');
-    }*/
     console.error(err.message);
       setAction('snapback');
   }
-  
 
-  // illegal move
-  /*
-  if (move === null) {
-    setAction('snapback');
-  }
-   */
-  
   updateStatus();
   window.setTimeout(makeRandomMove, 250);
 });
