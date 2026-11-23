@@ -8,7 +8,7 @@ startButton.addEventListener('click', () => {
 
 
 const board = document.querySelector('chess-board');
-const game = new Chess('8/k7/8/2K5/1Q6/8/8/8 w - - 0 1');
+const game = new Chess('k7/7R/2K5/8/8/8/8/8 w - - 0 1');
 const statusElement = document.querySelector('#status');
 const fenElement = document.querySelector('#fen');
 const pgnElement = document.querySelector('#pgn');
@@ -29,6 +29,19 @@ board.addEventListener('drag-start', (e) => {
     return;
   }
 });
+
+function makeRandomMove () {
+  let possibleMoves = game.moves();
+
+  // game over
+  if (possibleMoves.length === 0) {
+    return;
+  }
+
+  const randomIdx = Math.floor(Math.random() * possibleMoves.length);
+  game.move(possibleMoves[randomIdx]);
+  board.setPosition(game.fen());
+}
 
 board.addEventListener('drop', (e) => {
   const {source, target, setAction} = e.detail;
@@ -61,8 +74,9 @@ board.addEventListener('drop', (e) => {
     setAction('snapback');
   }
    */
-
+  
   updateStatus();
+  window.setTimeout(makeRandomMove, 250);
 });
 
 // update the board position after the piece snap
