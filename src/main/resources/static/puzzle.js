@@ -2,7 +2,15 @@ import { Chess } from 'https://unpkg.com/chess.js@1.4.0/dist/esm/chess.js'
 
 const startButton = document.querySelector('#startButton');
 
+const board = document.querySelector('chess-board');
+const game = new Chess('k7/7R/2K5/8/8/8/8/8 w - - 0 1');
+const statusElement = document.querySelector('#status');
+const fenElement = document.querySelector('#fen');
+const pgnElement = document.querySelector('#pgn');
 const result = document.querySelector('#result');
+
+
+const queue = [];
 
 function showResult(text) {
   result.textContent = text;
@@ -43,7 +51,6 @@ startButton.addEventListener('click', () => {
     } catch (err) {
       console.error(err.message);
       showResult("Game over");
-      i++;
       return;
     }
 
@@ -64,22 +71,7 @@ startButton.addEventListener('click', () => {
 });
 
 
-const board = document.querySelector('chess-board');
-const game = new Chess('k7/7R/2K5/8/8/8/8/8 w - - 0 1');
-const statusElement = document.querySelector('#status');
-const fenElement = document.querySelector('#fen');
-const pgnElement = document.querySelector('#pgn');
 
-const queue = [];
-
-
-
-
-
-/*const line = [];
-line.push('Ana');
-line.push('Ben');
-const next = line.shift(); // 'Ana'; line is now ['Ben'] */
 
 board.addEventListener('drag-start', (e) => {
   const {source, piece, position, orientation} = e.detail;
@@ -106,7 +98,6 @@ function makeRandomMove () {
     return;
   }
 
-  
   const randomIdx = Math.floor(Math.random() * possibleMoves.length);
   game.move(possibleMoves[randomIdx]);
   board.setPosition(game.fen());
@@ -125,36 +116,7 @@ board.addEventListener('drop', (e) => {
   });
 
   console.log(queue);
-  /*
-
-  let move = null;
-  // see if the move is legal
-  try {
-    move = game.move({
-    from: source,
-    to: target,
-    promotion: 'q' // NOTE: always promote to a queen for example simplicity
-  });
-    console.log("Place successful");
-  } catch (err) {
-    console.error(err.message);
-      setAction('snapback');
-  }
-
-  updateStatus();
-  window.setTimeout(makeRandomMove, 250);
-  */
 });
-
-// update the board position after the piece snap
-// for castling, en passant, pawn promotion
-/*
-board.addEventListener('snap-end', (e) => {
-  board.setPosition(game.fen());
-});
-*/
-
-
 
 function updateStatus () {
   let status = '';
@@ -173,7 +135,6 @@ function updateStatus () {
   } else {
     // game still on
     status = `${moveColor} to move`;
-
     // check?
     if (game.inCheck()) {
       status += `, ${moveColor} is in check`;
