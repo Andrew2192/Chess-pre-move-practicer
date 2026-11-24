@@ -2,6 +2,13 @@ import { Chess } from 'https://unpkg.com/chess.js@1.4.0/dist/esm/chess.js'
 
 const startButton = document.querySelector('#startButton');
 
+const result = document.querySelector('#result');
+
+function showResult(text) {
+  result.textContent = text;
+  result.hidden = false;
+}
+
 function countdown(n, callback) {
   if (n === 0 || n < 0) {
     console.log('moved');
@@ -18,6 +25,7 @@ startButton.addEventListener('click', () => {
   let i = 0;
   function playNextMove() {
     if (i >= queue.length) {
+      showResult("Game over, queue len = 0");
       return;
     }
   
@@ -34,8 +42,8 @@ startButton.addEventListener('click', () => {
       board.setPosition(game.fen());
     } catch (err) {
       console.error(err.message);
+      showResult("Game over");
       i++;
-      playNextMove();
       return;
     }
 
