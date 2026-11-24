@@ -13,13 +13,9 @@ function countdown(n, callback) {
 }
 
 startButton.addEventListener('click', () => {
-  //reset board
   board.setPosition(game.fen());
-  // 
   console.log('Start button pressed');
-
   let i = 0;
-  
   function playNextMove() {
     if (i >= queue.length) {
       return;
@@ -45,39 +41,17 @@ startButton.addEventListener('click', () => {
 
     updateStatus();
 
-    countdown(3, () => {
+    countdown(1, () => {
       makeRandomMove();
       updateStatus();
 
       i++;
 
-      countdown(3, playNextMove);
+      countdown(1, playNextMove);
     });
   }
 
-  playNextMove();
-
-  /*
-  for (const q of queue) {
-    let move = null;
-    // see if the move is legal
-    try {
-      move = game.move({
-      from: q.source,
-      to: q.target,
-      promotion: 'q' // NOTE: always promote to a queen for example simplicity
-      });
-      
-      
-      console.log("Place successful");
-    } catch (err) {
-      console.error(err.message);
-    }
-
-    updateStatus();
-    window.setTimeout(makeRandomMove, 250);
-  } */
-  
+  countdown(1, playNextMove);
 
 });
 
