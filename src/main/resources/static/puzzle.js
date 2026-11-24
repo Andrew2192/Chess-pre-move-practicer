@@ -2,9 +2,83 @@ import { Chess } from 'https://unpkg.com/chess.js@1.4.0/dist/esm/chess.js'
 
 const startButton = document.querySelector('#startButton');
 
+function countdown(n, callback) {
+  if (n === 0 || n < 0) {
+    console.log('moved');
+    callback();
+    return;
+  }
+  console.log(n);
+  setTimeout(() => countdown(n - 1, callback), 1000);
+}
+
 startButton.addEventListener('click', () => {
+  //reset board
+  board.setPosition(game.fen());
+  // 
   console.log('Start button pressed');
+
+  let i = 0;
   
+  function playNextMove() {
+    if (i >= queue.length) {
+      return;
+    }
+  
+    let move = null;
+  try {
+      move = game.move({
+      from: queue[i].source,
+      to: queue[i].target,
+      promotion: 'q' // NOTE: always promote to a queen for example simplicity
+      });
+      
+      
+      console.log("Place successful");
+      board.setPosition(game.fen());
+    } catch (err) {
+      console.error(err.message);
+      i++;
+      playNextMove();
+      return;
+    }
+
+    updateStatus();
+
+    countdown(3, () => {
+      makeRandomMove();
+      updateStatus();
+
+      i++;
+
+      countdown(3, playNextMove);
+    });
+  }
+
+  playNextMove();
+
+  /*
+  for (const q of queue) {
+    let move = null;
+    // see if the move is legal
+    try {
+      move = game.move({
+      from: q.source,
+      to: q.target,
+      promotion: 'q' // NOTE: always promote to a queen for example simplicity
+      });
+      
+      
+      console.log("Place successful");
+    } catch (err) {
+      console.error(err.message);
+    }
+
+    updateStatus();
+    window.setTimeout(makeRandomMove, 250);
+  } */
+  
+
 });
 
 
@@ -15,10 +89,7 @@ const fenElement = document.querySelector('#fen');
 const pgnElement = document.querySelector('#pgn');
 
 const queue = [];
-const qMove = {
-  source: '',
-  target: ''
-};
+
 
 
 
@@ -53,6 +124,7 @@ function makeRandomMove () {
     return;
   }
 
+  
   const randomIdx = Math.floor(Math.random() * possibleMoves.length);
   game.move(possibleMoves[randomIdx]);
   board.setPosition(game.fen());
@@ -71,6 +143,7 @@ board.addEventListener('drop', (e) => {
   });
 
   console.log(queue);
+  /*
 
   let move = null;
   // see if the move is legal
@@ -88,13 +161,18 @@ board.addEventListener('drop', (e) => {
 
   updateStatus();
   window.setTimeout(makeRandomMove, 250);
+  */
 });
 
 // update the board position after the piece snap
 // for castling, en passant, pawn promotion
+/*
 board.addEventListener('snap-end', (e) => {
   board.setPosition(game.fen());
 });
+*/
+
+
 
 function updateStatus () {
   let status = '';

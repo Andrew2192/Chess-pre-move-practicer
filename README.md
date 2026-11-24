@@ -10,16 +10,15 @@ Some players can't win when they have enough material to win but don't have enou
 
 ## How It Works
 
-After index.html, the user adds a puzzle and pre-moves it after it's loaded. After premoving it, 
-they can press the check pre-move button to see if they might have made an incorrect move. 
-After this, they have the option of repeating the process.
+When the website loads index.html, the user sees a puzzle
+which is a forced mate in 2. After the user comes up with a premove strategy for it, they can premove that strategy, press start, and the website will tell them if it's the right strategy for that puzzle.
 
 ![System diagram]([docs/diagram.png](https://github.com/Andrew2192/Chess-pre-move-practicer/blob/main/System%20Diagram.pdf))
 
 ## Tech Stack
 
-- **Language:** HTML, CSS, JavaScript, Java
-- **Libraries:** chessboard-element, Thymeleaf 
+- **Language:** HTML, JavaScript, Java
+- **Libraries:** chessboard-element, Thymeleaf, chess.js
 - **External tools:** Gradle, Git, VSCode
 - **Frameworks:** Spring Boot
 
