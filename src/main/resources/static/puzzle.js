@@ -2,13 +2,14 @@ import { Chess } from 'https://unpkg.com/chess.js@1.4.0/dist/esm/chess.js'
 
 const startButton = document.querySelector('#startButton');
 
+const fenString = 'k7/7R/2K5/8/8/8/8/8 w - - 0 1'
 const board = document.querySelector('chess-board');
-const game = new Chess('k7/7R/2K5/8/8/8/8/8 w - - 0 1');
+const game = new Chess(fenString);
 const statusElement = document.querySelector('#status');
 const fenElement = document.querySelector('#fen');
 const pgnElement = document.querySelector('#pgn');
 const result = document.querySelector('#result');
-
+const reset = document.querySelector('#reset');
 
 const queue = [];
 
@@ -33,7 +34,7 @@ startButton.addEventListener('click', () => {
   let i = 0;
   function playNextMove() {
     if (i >= queue.length) {
-      showResult("Game over, queue len = 0");
+      showResult("Queue over");
       return;
     }
   
@@ -68,6 +69,24 @@ startButton.addEventListener('click', () => {
 
   countdown(1, playNextMove);
 
+});
+
+reset.addEventListener('click', () => {
+  console.log('Reset button pressed');
+  // Reset game to FEN
+  game.load(fenString);
+
+  // Clear queue 
+  queue.length = 0;
+  
+  //clear board
+  board.setPosition(game.fen());
+
+  // Clear game over message
+  result.hidden = true;
+
+  updateStatus();
+  
 });
 
 
