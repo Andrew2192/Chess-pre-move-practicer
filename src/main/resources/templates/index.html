@@ -10,25 +10,34 @@
         <h1>Chess Premove Practicer</h1>
         <script type="module" src="https://unpkg.com/chessboard-element?module"></script>
         <script type="module" src = "puzzle.js"></script>
-        <div id="board">
+
+
+        <div id="container">
+            <div id="board">
             <chess-board
                 style="width: 800px"
                 position="k7/7R/2K5/8/8/8/8/8"
                 draggable-pieces>
             </chess-board>
+            </div>
+            <div id = "buttons">
+                <p id = "result" hidden> </p>
+                <div id="status"></div>
+                <button id = "startButton">Start</button>
+                <p id = "message"></p>
+                <button id = "reset">Reset</button>
+            </div>
         </div>
+       
 
-        <p id = "result" hidden> </p>
+        
 
         <div id="fen" hidden></div>
         <div id="pgn" hidden></div>
 
-        <div id="status"></div>
         
-        <button id = "startButton">Start</button>
-        <p id = "message"></p>
-
-        <button id = "reset">Reset</button>
+        
+        
         
     </body>
 </html>

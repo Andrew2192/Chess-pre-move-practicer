@@ -51,7 +51,7 @@ startButton.addEventListener('click', () => {
       board.setPosition(game.fen());
     } catch (err) {
       console.error(err.message);
-      showResult("Game over");
+      showResult(err.message);
       return;
     }
 
