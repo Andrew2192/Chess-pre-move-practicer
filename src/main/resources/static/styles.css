@@ -1,0 +1,21 @@
+h1 {
+    text-align: center;
+    background-color: aqua;
+    font-family: cursive;
+}
+
+#board {
+    padding-left: 30px;
+}
+
+
+#startButton {
+    background-color: aquamarine;
+    color: black;
+    border: 2px solid black;
+    font-size: 20px;
+}
+
+#resetButton {
+    background-color: red;
+}
