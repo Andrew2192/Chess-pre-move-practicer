@@ -43,8 +43,8 @@ How to actually run the thing, with examples.
 
 ## Roadmap
 
+- [X] Settings button + interface
 - [ ] External chess library access
-- [ ] Settings button + interface
 - [ ] Puzzle racer for premoves
 
 ## Author
