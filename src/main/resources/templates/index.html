@@ -8,11 +8,22 @@
         
     <body>
         <h1>Chess Premove Practicer</h1>
+        <div id = "settingsContainer">
+            <button id = "closeSettings">Close</button>
+            <h3>Sound Effects</h3>
+
+            <label>
+                <input type="checkbox" id="soundToggle" checked>
+                Enable move sounds
+            </label>
+        </div>
+        <button id="settingsButton">Settings</button>
+        
         <script type="module" src="https://unpkg.com/chessboard-element?module"></script>
         <script type="module" src = "puzzle.js"></script>
 
 
-        <div id="container">
+        <div id="gameContainer">
             <div id="board">
             <chess-board
                 style="width: 800px"
