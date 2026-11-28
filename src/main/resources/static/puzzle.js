@@ -12,12 +12,20 @@ const result = document.querySelector('#result');
 const reset = document.querySelector('#reset');
 const settingsButton = document.querySelector('#settingsButton');
 const closeSettings = document.querySelector('#closeSettings');
+const soundToggle = document.querySelector('#soundToggle');
 
 const queue = [];
 
 function showResult(text) {
   result.textContent = text;
   result.hidden = false;
+}
+
+function playSound() {
+  if (soundToggle.checked) {
+    let sound = new Audio('move.mp3');
+    sound.play();
+  }
 }
 
 function countdown(n, callback) {
@@ -61,6 +69,7 @@ startButton.addEventListener('click', () => {
       
       console.log("Place successful");
       board.setPosition(game.fen());
+      playSound();
     } catch (err) {
       console.error(err.message);
       showResult(err.message);
@@ -132,6 +141,7 @@ function makeRandomMove () {
   const randomIdx = Math.floor(Math.random() * possibleMoves.length);
   game.move(possibleMoves[randomIdx]);
   board.setPosition(game.fen());
+  playSound();
 }
 
 board.addEventListener('drop', (e) => {
