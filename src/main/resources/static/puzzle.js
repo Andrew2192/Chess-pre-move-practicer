@@ -10,6 +10,8 @@ const fenElement = document.querySelector('#fen');
 const pgnElement = document.querySelector('#pgn');
 const result = document.querySelector('#result');
 const reset = document.querySelector('#reset');
+const settingsButton = document.querySelector('#settingsButton');
+const closeSettings = document.querySelector('#closeSettings');
 
 const queue = [];
 
@@ -28,13 +30,23 @@ function countdown(n, callback) {
   setTimeout(() => countdown(n - 1, callback), 1000);
 }
 
+settingsButton.addEventListener('click', () => {
+  settingsContainer.style.display = 'block';
+});
+
+closeSettings.addEventListener('click', () => {
+  settingsContainer.style.display = 'none';
+});
+
+
+
 startButton.addEventListener('click', () => {
   board.setPosition(game.fen());
   console.log('Start button pressed');
   let i = 0;
   function playNextMove() {
     if (i >= queue.length) {
-      showResult("Queue over");
+      //showResult("Queue over");
       return;
     }
   
